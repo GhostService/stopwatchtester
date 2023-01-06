@@ -6,4 +6,5 @@ Load Up the HTML File and click "Start Timer"
 It will choose a random time between 1 and 10 seconds. When that timer is up, the stopwatch will stop. Simply hit "Stop" To See your reaction time displayed.
 
 # Misc.
+Made By DapperLS
 This project was made for the 2023 CFISD GT Horizons Showcase.
