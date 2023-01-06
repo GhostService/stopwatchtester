@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stopwatch</title>
+  </head>
+  <body>
+    <div id="stopwatch">0:0:0</div>
+    <button onclick="startRandomTimer()">Start Timer</button>
+    <button onclick="stopStopwatch()">Stop</button>
+    <h1 id="test1"></h1>
+    <h1 id="reactionTime"></h1>
+    <script>
+      let startTime;
+      let endTime;
+      let running = false;
+      let timer;
+
+      function startRandomTimer() {
+        let randomTime = Math.random() * (10000 - 1000) + 1000;
+        timer = setTimeout(startStopwatch, randomTime);
+        console.log("Generated: " + randomTime);
+        document.getElementById("test1").innerHTML = "Wait.....";
+      }
+
+      function startStopwatch() {
+        if (running) {
+          return;
+        }
+        console.log("stopwatchStart");
+        document.getElementById("test1").innerHTML = "Go!";
+        new Audio('beepcropped.mp3').play()
+        running = true;
+        startTime = new Date();
+        setInterval(updateStopwatch, 10);
+      }
+
+      function stopStopwatch() {
+        if (!running) {
+          return;
+        }
+        running = false;
+        endTime = new Date();
+        console.log("stopwatchStop");
+      }
+
+      function updateStopwatch() {
+        if (!running) {
+          return;
+        }
+        let currentTime = new Date();
+        let elapsedTime = currentTime - startTime;
+
+        let minutes = Math.floor(elapsedTime / (1000 * 60));
+        elapsedTime -= minutes * (1000 * 60);
+
+        let seconds = Math.floor(elapsedTime / 1000);
+        elapsedTime -= seconds * 1000;
+
+        let milliseconds = elapsedTime;
+
+        let stopwatchElement = document.getElementById("stopwatch");
+        stopwatchElement.innerHTML = `${minutes}:${seconds}:${milliseconds}`;
+      }
+    </script>
+  </body>
+</html>
